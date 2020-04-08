@@ -29,15 +29,19 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    int setDataList(QListWidget *list,  QUrl url);
-    void insertItem(QListWidget *list,  std::string row);
+    int setDataList(QListWidget *list,  QUrl url, std::string cl);
+    void insertItem(QListWidget *list,  std::string row, std::string cl);
     void createCounterGraph(QChartView *graph);
+    void createLettersGraph(QChartView *graph, int array[], QString title);
+    void countLetter(std::string name, int array[]);
+    void initArray(int array[]);
 
 private:
     Ui::MainWindow *ui;
     int emi_counter;
     int universal_counter;
-
+    int emi_letters[26];
+    int universal_letters[26];
 
 };
 #endif // MAINWINDOW_H
