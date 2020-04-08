@@ -20,8 +20,8 @@ MainWindow::MainWindow(QWidget *parent)
     ui->setupUi(this);
 
     // ottengo i dati dalle liste
-    setDataList(ui->universal_list, QUrl("http://www.ivl.disco.unimib.it/minisites/cpp/List_of_Universal_artists.txt"));
-    setDataList(ui->emi_list, QUrl("http://www.ivl.disco.unimib.it/minisites/cpp/List_of_EMI_artists.txt"));
+    universal_counter = setDataList(ui->universal_list, QUrl("http://www.ivl.disco.unimib.it/minisites/cpp/List_of_Universal_artists.txt"));
+    emi_counter =setDataList(ui->emi_list, QUrl("http://www.ivl.disco.unimib.it/minisites/cpp/List_of_EMI_artists.txt"));
 
     // creo il grafico con conteggio dei nomi
     createCounterGraph(ui->counter_graph);
@@ -37,8 +37,8 @@ MainWindow::~MainWindow() {
 void MainWindow::createCounterGraph(QChartView *graph){
 
     QPieSeries *series = new QPieSeries();
-    series->append("UNIVERSAL", 1);
-    series->append("EMI", 2);
+    series->append("UNIVERSAL", universal_counter);
+    series->append("EMI", emi_counter);
 
     QChart *chart = new QChart();
     chart->addSeries(series);
@@ -50,7 +50,7 @@ void MainWindow::createCounterGraph(QChartView *graph){
 
 }
 
-void MainWindow::setDataList(QListWidget *list,  QUrl url){
+int MainWindow::setDataList(QListWidget *list,  QUrl url){
 
     QNetworkAccessManager manager;
     QNetworkReply *response = manager.get(QNetworkRequest(url));
@@ -62,17 +62,23 @@ void MainWindow::setDataList(QListWidget *list,  QUrl url){
     std::string s = content.toStdString();
     std::string delimiter = "\n";
 
+    int counter = 0;
+
     size_t pos = 0;
     std::string token;
     while ((pos = s.find(delimiter)) != std::string::npos) {
         token = s.substr(0, pos);
 
         insertItem(list, token);
+        counter++;
 
         s.erase(0, pos + delimiter.length());
 
     }
     insertItem(list, s); // last row
+    counter++;
+
+    return counter;
 
 }
 

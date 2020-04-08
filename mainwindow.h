@@ -29,12 +29,14 @@ public:
     MainWindow(QWidget *parent = nullptr);
     ~MainWindow();
 
-    void setDataList(QListWidget *list,  QUrl url);
+    int setDataList(QListWidget *list,  QUrl url);
     void insertItem(QListWidget *list,  std::string row);
     void createCounterGraph(QChartView *graph);
 
 private:
     Ui::MainWindow *ui;
+    int emi_counter;
+    int universal_counter;
 
 
 };
