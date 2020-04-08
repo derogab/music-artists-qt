@@ -11,8 +11,9 @@
 #include <QtDebug>
 #include <QStyle>
 #include <QDesktopWidget>
-
+#include <QListWidgetItem>
 #include <QListWidget>
+#include <QLabel>
 
 
 QT_BEGIN_NAMESPACE
@@ -27,6 +28,7 @@ public:
     ~MainWindow();
 
     void setDataList(QListWidget *list,  QUrl url);
+    void insertItem(QListWidget *list,  std::string row);
 
 private:
     Ui::MainWindow *ui;
