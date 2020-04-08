@@ -3,6 +3,15 @@
 
 #include <iostream>
 
+
+#include <QtWidgets/QApplication>
+#include <QtWidgets/QMainWindow>
+#include <QtCharts/QChartView>
+#include <QtCharts/QPieSeries>
+#include <QtCharts/QPieSlice>
+
+QT_CHARTS_USE_NAMESPACE
+
 MainWindow::MainWindow(QWidget *parent)
     : QMainWindow(parent)
     , ui(new Ui::MainWindow) {
@@ -13,10 +22,32 @@ MainWindow::MainWindow(QWidget *parent)
     // ottengo i dati dalle liste
     setDataList(ui->universal_list, QUrl("http://www.ivl.disco.unimib.it/minisites/cpp/List_of_Universal_artists.txt"));
     setDataList(ui->emi_list, QUrl("http://www.ivl.disco.unimib.it/minisites/cpp/List_of_EMI_artists.txt"));
+
+    // creo il grafico con conteggio dei nomi
+    createCounterGraph(ui->counter_graph);
+
+
+
 }
 
 MainWindow::~MainWindow() {
     delete ui;
+}
+
+void MainWindow::createCounterGraph(QChartView *graph){
+
+    QPieSeries *series = new QPieSeries();
+    series->append("UNIVERSAL", 1);
+    series->append("EMI", 2);
+
+    QChart *chart = new QChart();
+    chart->addSeries(series);
+    chart->setTitle("Artisti per Etichetta");
+    //chart->legend()->hide();
+
+    graph->setChart(chart);
+    graph->setRenderHint(QPainter::Antialiasing);
+
 }
 
 void MainWindow::setDataList(QListWidget *list,  QUrl url){

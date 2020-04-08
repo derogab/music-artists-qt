@@ -14,7 +14,9 @@
 #include <QListWidgetItem>
 #include <QListWidget>
 #include <QLabel>
+#include <QtCharts/QChartView>
 
+QT_CHARTS_USE_NAMESPACE
 
 QT_BEGIN_NAMESPACE
 namespace Ui { class MainWindow; }
@@ -29,6 +31,7 @@ public:
 
     void setDataList(QListWidget *list,  QUrl url);
     void insertItem(QListWidget *list,  std::string row);
+    void createCounterGraph(QChartView *graph);
 
 private:
     Ui::MainWindow *ui;
