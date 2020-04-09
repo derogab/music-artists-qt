@@ -49,10 +49,18 @@ void MainWindow::createCounterGraph(QChartView *graph){
     QChart *chart = new QChart();
     chart->addSeries(series);
     chart->setTitle("Artisti per Etichetta");
-    //chart->legend()->hide();
+
+    chart->legend()->setVisible(true);
+    chart->legend()->setAlignment(Qt::AlignBottom);
+
+    chart->legend()->color();
 
     graph->setChart(chart);
     graph->setRenderHint(QPainter::Antialiasing);
+
+
+
+
 
 }
 
@@ -140,10 +148,26 @@ void MainWindow::createLettersGraph(QChartView *graph, int array[], QString titl
     series->append(set24);
     series->append(set25);
 
+    series->setLabelsVisible();
+    series->setBarWidth(1);
+    series->setLabelsAngle(270);
+
     QChart *chart = new QChart();
     chart->addSeries(series);
     chart->setTitle(title);
     chart->setAnimationOptions(QChart::SeriesAnimations);
+
+    QValueAxis *axisY = new QValueAxis;
+    axisY->setLabelFormat("%i");
+    axisY->setTitleText("Contatore");
+    chart->addAxis(axisY, Qt::AlignLeft);
+    series->attachAxis(axisY);
+
+    chart->legend()->setVisible(true);
+    chart->legend()->setAlignment(Qt::AlignBottom);
+
+    chart->layout()->setContentsMargins(2, 2, 2, 2);
+    chart->setMargins(QMargins(2, 2, 2, 2));
 
     graph->setChart(chart);
     graph->setRenderHint(QPainter::Antialiasing);
@@ -285,8 +309,5 @@ void MainWindow::insertItem(QListWidget *list, std::string row, std::string cl =
        countLetter(title, emi_letters);
     else if(cl.compare("UNIVERSAL") == 0)
        countLetter(title, universal_letters);
-
-    std::cout << emi_letters[0] << std::endl;
-    std::cout << universal_letters[0] << std::endl;
 
 }
