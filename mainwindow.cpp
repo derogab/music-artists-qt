@@ -38,6 +38,7 @@ MainWindow::MainWindow(QWidget *parent)
 
 MainWindow::~MainWindow() {
     delete ui;
+
 }
 
 void MainWindow::createCounterGraph(QChartView *graph){
@@ -45,6 +46,11 @@ void MainWindow::createCounterGraph(QChartView *graph){
     QPieSeries *series = new QPieSeries();
     series->append("UNIVERSAL", universal_counter);
     series->append("EMI", emi_counter);
+
+    for(auto slice : series->slices()){
+        slice->setLabelBrush(QBrush(Qt::white));
+        slice->setLabel(slice->label() + ": "  + QString::number(slice->value()));
+    }
 
     QChart *chart = new QChart();
     chart->addSeries(series);

@@ -15,7 +15,57 @@
   </property>
   <widget class="QWidget" name="centralwidget">
    <layout class="QGridLayout" name="gridLayout">
-    <item row="1" column="4">
+    <item row="6" column="2" colspan="3">
+     <widget class="QChartView" name="emi_letters_graph">
+      <property name="sizePolicy">
+       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
+        <horstretch>100</horstretch>
+        <verstretch>0</verstretch>
+       </sizepolicy>
+      </property>
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>160</height>
+       </size>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>950</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>250</width>
+        <height>200</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="4" column="2" colspan="3">
+     <widget class="QChartView" name="universal_letters_graph">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>160</height>
+       </size>
+      </property>
+      <property name="sizeIncrement">
+       <size>
+        <width>950</width>
+        <height>0</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>250</width>
+        <height>200</height>
+       </size>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="4">
      <widget class="QListWidget" name="universal_list">
       <property name="minimumSize">
        <size>
@@ -46,88 +96,22 @@
       </property>
      </widget>
     </item>
-    <item row="2" column="2" colspan="3">
-     <widget class="QChartView" name="universal_letters_graph">
-      <property name="minimumSize">
-       <size>
-        <width>200</width>
-        <height>160</height>
-       </size>
-      </property>
-      <property name="sizeIncrement">
-       <size>
-        <width>950</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="baseSize">
-       <size>
-        <width>250</width>
-        <height>200</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="1" column="3">
-     <widget class="QListWidget" name="emi_list">
-      <property name="minimumSize">
-       <size>
-        <width>200</width>
-        <height>75</height>
-       </size>
-      </property>
-      <property name="baseSize">
-       <size>
-        <width>250</width>
-        <height>100</height>
-       </size>
-      </property>
-      <property name="spacing">
-       <number>2</number>
-      </property>
-     </widget>
-    </item>
-    <item row="4" column="2" colspan="3">
-     <widget class="QChartView" name="emi_letters_graph">
-      <property name="sizePolicy">
-       <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
-        <horstretch>100</horstretch>
-        <verstretch>0</verstretch>
-       </sizepolicy>
-      </property>
-      <property name="minimumSize">
-       <size>
-        <width>200</width>
-        <height>160</height>
-       </size>
-      </property>
-      <property name="sizeIncrement">
-       <size>
-        <width>950</width>
-        <height>0</height>
-       </size>
-      </property>
-      <property name="baseSize">
-       <size>
-        <width>250</width>
-        <height>200</height>
-       </size>
-      </property>
-     </widget>
-    </item>
-    <item row="0" column="3">
-     <widget class="QLabel" name="emi_label">
+    <item row="0" column="2" colspan="3">
+     <widget class="QLabel" name="title">
       <property name="font">
        <font>
         <pointsize>12</pointsize>
        </font>
       </property>
       <property name="text">
-       <string>Artisti di EMI</string>
+       <string>&lt;h3&gt;Artisti&lt;/h3&gt;</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
       </property>
      </widget>
     </item>
-    <item row="0" column="4">
+    <item row="2" column="4">
      <widget class="QLabel" name="universal_label">
       <property name="font">
        <font>
@@ -137,9 +121,19 @@
       <property name="text">
        <string>Artisti di Universal</string>
       </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
      </widget>
     </item>
-    <item row="0" column="2" rowspan="2">
+    <item row="1" column="2" colspan="3">
+     <widget class="Line" name="line">
+      <property name="orientation">
+       <enum>Qt::Horizontal</enum>
+      </property>
+     </widget>
+    </item>
+    <item row="3" column="3">
      <widget class="QChartView" name="counter_graph">
       <property name="sizePolicy">
        <sizepolicy hsizetype="Expanding" vsizetype="Expanding">
@@ -167,23 +161,41 @@
       </property>
      </widget>
     </item>
+    <item row="3" column="2">
+     <widget class="QListWidget" name="emi_list">
+      <property name="minimumSize">
+       <size>
+        <width>200</width>
+        <height>75</height>
+       </size>
+      </property>
+      <property name="baseSize">
+       <size>
+        <width>250</width>
+        <height>100</height>
+       </size>
+      </property>
+      <property name="spacing">
+       <number>2</number>
+      </property>
+     </widget>
+    </item>
+    <item row="2" column="2">
+     <widget class="QLabel" name="emi_label">
+      <property name="font">
+       <font>
+        <pointsize>12</pointsize>
+       </font>
+      </property>
+      <property name="text">
+       <string>Artisti di EMI</string>
+      </property>
+      <property name="alignment">
+       <set>Qt::AlignCenter</set>
+      </property>
+     </widget>
+    </item>
    </layout>
-  </widget>
-  <widget class="QMenuBar" name="menubar">
-   <property name="geometry">
-    <rect>
-     <x>0</x>
-     <y>0</y>
-     <width>1096</width>
-     <height>22</height>
-    </rect>
-   </property>
-   <widget class="QMenu" name="artists_menu">
-    <property name="title">
-     <string>Artisti</string>
-    </property>
-   </widget>
-   <addaction name="artists_menu"/>
   </widget>
   <widget class="QStatusBar" name="statusbar"/>
  </widget>
