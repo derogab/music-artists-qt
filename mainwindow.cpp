@@ -28,11 +28,16 @@ MainWindow::MainWindow(QWidget *parent)
     emi_counter =setDataList(ui->emi_list, QUrl("http://www.ivl.disco.unimib.it/minisites/cpp/List_of_EMI_artists.txt"), "EMI");
 
     // creo il grafico con conteggio dei nomi
-    createCounterGraph(ui->counter_graph);
+    if(universal_counter != 0 || emi_counter != 0)
+        createCounterGraph(ui->counter_graph);
+    else
+        ui->error_label->setText("Nessun dato scaricato");
 
     // creo i grafici per le lettere
-    createLettersGraph(ui->universal_letters_graph, universal_letters, "Artisti della Universal divisi per lettera");
-    createLettersGraph(ui->emi_letters_graph, emi_letters, "Artisti della EMI divisi per lettera");
+    if(universal_counter != 0)
+        createLettersGraph(ui->universal_letters_graph, universal_letters, "Artisti della Universal divisi per lettera");
+    if(emi_counter != 0)
+        createLettersGraph(ui->emi_letters_graph, emi_letters, "Artisti della EMI divisi per lettera");
 
 }
 
@@ -249,10 +254,23 @@ void MainWindow::countLetter(std::string name, int array[]){
 int MainWindow::setDataList(QListWidget *list,  QUrl url, std::string cl = ""){
 
     QNetworkAccessManager manager;
-    QNetworkReply *response = manager.get(QNetworkRequest(url));
+
+    QNetworkReply *response;
+    try {
+        response = manager.get(QNetworkRequest(url));
+    } catch (...) {
+        ui->error_label->setText("Errore di rete");
+    }
+
     QEventLoop event;
     connect(response, SIGNAL(finished()), &event, SLOT(quit()));
-    event.exec();
+
+    try {
+        event.exec();
+    } catch (...) {
+        ui->error_label->setText("Errore di rete");
+    }
+
     QString content = response->readAll();
 
     std::string s = content.toStdString();
