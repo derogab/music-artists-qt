@@ -24,8 +24,8 @@ MainWindow::MainWindow(QWidget *parent)
     initArray(emi_letters);
 
     // ottengo i dati dalle liste
-    universal_counter = setDataList(ui->universal_list, QUrl("http://www.ivl.disco.unimib.it/minisites/cpp/List_of_Universal_artists.txt"), "UNIVERSAL");
-    emi_counter =setDataList(ui->emi_list, QUrl("http://www.ivl.disco.unimib.it/minisites/cpp/List_of_EMI_artists.txt"), "EMI");
+    universal_counter = setDataList(ui->universal_list, QUrl("https://raw.githubusercontent.com/derogab/music-artists-qt/master/.dataset/List_of_Universal_artists.txt"), "UNIVERSAL");
+    emi_counter =setDataList(ui->emi_list, QUrl("https://raw.githubusercontent.com/derogab/music-artists-qt/master/.dataset/List_of_EMI_artists.txt"), "EMI");
 
     // creo il grafico con conteggio dei nomi
     if(universal_counter != 0 || emi_counter != 0)
