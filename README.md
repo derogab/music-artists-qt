@@ -2,6 +2,8 @@
 
 ### PROGETTO DEL CORSO DI PROGRAMMAZIONE C++
 
+![](./.assets/screenshot.png)
+
 ## CONSEGNA DEL PROGETTO
 Il progetto richiede la creazione di un'interfaccia grafica per la visualizzazione
 degli artisti di due delle più prestigiose etichette discografiche mondiali. Nello
